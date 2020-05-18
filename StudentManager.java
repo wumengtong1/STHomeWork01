@@ -1,175 +1,165 @@
-package homework;
-
-import java.util.Arrays;
+package wumengtong;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentManager {
-//	private Boolean ready=true;
-	
-	//Êı×éĞòºÅ
-	private int i=0;
+    static Scanner scanner = new Scanner(System.in);
+    static ArrayList<Student> arrayList = new ArrayList<>();//åˆå§‹åŒ–
+    public static void addStudent(int ID,String name,String birDate,boolean gender)
+    {
 
-	//¶¨ÒåÊı×é
-	Student stList[]=new Student[20];
-	
-//	public void setReady(Boolean ready) {
-//		this.ready=ready;
-//	}
-	//³õÊ¼»¯Êı×é
-	public void init() {
-		for(int l=0;l<20;l++) {
-			stList[l]=new Student();
-		}
-	}
-	
-	//ÏÔÊ¾½çÃæ
-	@SuppressWarnings("resource")
-	public void app() {
-//		ready=false;
-		Scanner x=new Scanner(System.in);
-		System.out.println("ÇëÑ¡Ôñ²Ù×÷£º");
-		System.out.println("*********************************************************");
-		System.out.println("*                         1.²åÈë                        *");
-		System.out.println("*                         2.²éÕÒ                        *");
-		System.out.println("*                         3.É¾³ı                        *");
-		System.out.println("*                         4.ĞŞ¸Ä                        *");
-		System.out.println("*                         5.Êä³ö                        *");
-		System.out.println("*                         6.ÍË³ö                        *");
-		System.out.println("*********************************************************");
-		//Ñ¡Ôñ²Ù×÷
-		switch(x.nextInt()) {
-			case 1:
-				insert();
-				break;
-			case 2:
-				seek();
-				break;
-			case 3:
-				delete();
-				break;
-			case 4:
-				change();
-				break;
-			case 5:
-				printAll();
-				break;
-			case 6:
-				leave();
-				break;
-		}
-	}
-	//²åÈë
-	@SuppressWarnings("resource")
-	public void insert() {
-//		ready=true;
-		if(i<20) {
-			Student st = new Student();
-			Scanner id=new Scanner(System.in);
-			System.out.println("ÇëÊäÈëÑ§ÉúÑ§ºÅ£º");
-			st.setID(id.nextInt());
-			Scanner name=new Scanner(System.in);
-			System.out.println("ÇëÊäÈëÑ§ÉúĞÕÃû£º");
-			st.setName(name.next());
-			Scanner birDay=new Scanner(System.in);
-			System.out.println("ÇëÊäÈëÑ§ÉúÉúÈÕ£º");
-			st.setBirDay(birDay.next());
-			Scanner gender=new Scanner(System.in);
-			System.out.println("ÇëÊäÈëÑ§ÉúĞÔ±ğ£º");
-			st.setGender(gender.nextBoolean());
-			stList[i]=st;
-			i++;
-			//Êı×éÅÅĞò£¨°´ID´óĞ¡£©
-			Arrays.sort(stList);
-		}
-		else {
-			System.out.println("ÒÑ¾­´æÂúÁË£¡");
-		}
-		app();
-	}
-	//²éÕÒ
-	public void seek() {
-//		ready=true;
-		Student st = new Student();
-		Scanner id=new Scanner(System.in);
-		System.out.println("ÇëÊäÈë¸ÃÑ§ÉúÑ§ºÅ£º");
-		st.setID(id.nextInt());
-		int j=stList.length;
-		boolean have=true;
-		for(int k=0;k<j;k++) {
-			if(stList[k].getID()==st.getID()) {
-				have=false;
-				System.out.println("Student [ID=" + stList[k].getID() + ", name=" + stList[k].getName() +",=birDay"+ stList[k].getBirDay() + ",gender" + stList[k].getGender() + "]");
-			}
-		}
-		if(have) {
-			System.out.println("Ã»ÓĞ¸ÃÑ§ÉúĞÅÏ¢");
-		}
-		Arrays.sort(stList);
-		app();
-	}
-	//É¾³ı
-	public void delete() {
-//		ready=true;
-		Student st = new Student();
-		Scanner id=new Scanner(System.in);
-		System.out.println("ÇëÊäÈë¸ÃÑ§ÉúÑ§ºÅ£º");
-		st.setID(id.nextInt());
-		int j=stList.length;
-		boolean have=true;
-		for(int k=0;k<j;k++) {
-			if(stList[k].getID()==st.getID()) {
-				have=false;
-				stList[k].setID(100000000);
-				stList[k].setName(null);
-				stList[k].setBirDay(null);
-				stList[k].setGender(null);	
-			}
-		}
-		if(have) {
-			System.out.println("Ã»ÓĞ¸ÃÑ§ÉúĞÅÏ¢");
-		}
-		Arrays.sort(stList);
-		app();
-	}
-	//ĞŞ¸Ä
-	public void change() {
-//		ready=true;
-		Student st = new Student();
-		Scanner id=new Scanner(System.in);
-		System.out.println("ÇëÊäÈë¸ÃÑ§ÉúÑ§ºÅ£º");
-		st.setID(id.nextInt());
-		int j=stList.length;
-		boolean have=true;
-		for(int k=0;k<j;k++) {
-			if(stList[k].getID()==st.getID()) {
-				have=false;
-				Scanner id1=new Scanner(System.in);
-				System.out.println("ÇëÊäÈëÑ§ÉúÑ§ºÅ£º");
-				stList[k].setID(id1.nextInt());
-				Scanner name=new Scanner(System.in);
-				System.out.println("ÇëÊäÈëÑ§ÉúĞÕÃû£º");
-				stList[k].setName(name.next());
-				Scanner birDay=new Scanner(System.in);
-				System.out.println("ÇëÊäÈëÑ§ÉúÉúÈÕ£º");
-				stList[k].setBirDay(birDay.next());
-				Scanner gender=new Scanner(System.in);
-				System.out.println("ÇëÊäÈëÑ§ÉúĞÔ±ğ£º");
-				stList[k].setGender(gender.nextBoolean());
-			}
-		}
-		if(have) {
-			System.out.println("Ã»ÓĞ¸ÃÑ§ÉúĞÅÏ¢");
-		}
-		Arrays.sort(stList);
-		app();
-	}
-	//Êä³öËùÓĞÑ§ÉúĞÅÏ¢
-	public void printAll() {
-//		ready=true;
-		System.out.println(Arrays.toString(stList));
-		app();
-	}
-	//ÍË³ö
-	public void leave() {
-	}
+        Student student = new Student();
+        student.setBirDate(birDate);
+        student.setID(ID);
+        student.setName(name);
+        student.setGender(gender);
+        arrayList.add(student);
+
+    }//æ’å…¥
+
+    public static void seek(String name1)
+    {
+
+        boolean isFind = false;
+
+        for (Student student1 : arrayList)
+        {
+            if (student1.getName().equals(name1) )
+            {
+                isFind =true;
+                System.out.println("å­¦å·ï¼š" + student1.getID()  + "å§“åï¼š" + student1.getName() + "å‡ºç”Ÿæ—¥æœŸï¼š"+student1.getBirDate()+"æ€§åˆ«"+(student1.isGender()?"ç”·":"å¥³"));
+            }
+        }
+        if (!isFind)
+            System.out.println("æœªæŸ¥åˆ°æ­¤äººï¼Œè¯·æ ¸å¯¹ä¿¡æ¯");
+    }//æŸ¥æ‰¾
+    	public static void delete(String name2)
+        {
+            boolean isFinddelete = false;
+
+            for (int i = 0; i <arrayList.size();i++)
+            {
+                Student student1 = arrayList.get(i);
+                if (student1.getName().equals(name2) )
+                {
+                    isFinddelete =true;
+                    arrayList.remove(student1);
+                }
+            }
+            if (!isFinddelete)
+                System.out.println("æœªæŸ¥åˆ°æ­¤äººï¼Œè¯·æ ¸å¯¹ä¿¡æ¯");
+        }//åˆ é™¤
+    public static void change(String name3)
+    {
+
+        boolean isFindchange = false;
+        for (int i = 0; i <arrayList.size();i++)
+        {
+            Student student1 = arrayList.get(i);
+            if (student1.getName().equals(name3) )
+            {
+                isFindchange =true;
+                System.out.println("è¯·è¾“å…¥ä¿®æ”¹äººçš„å‡ºç”Ÿæ—¥æœŸ");
+                String birdh = scanner.nextLine();
+                student1.setBirDate(birdh);
+                System.out.println("è¯·è¾“å…¥ä¿®æ”¹äººçš„æ€§åˆ«");
+                boolean sex = scanner.nextLine().equals("ç”·")?true:false;
+                student1.setGender(sex);
+
+            }
+        }
+        if (!isFindchange)
+            System.out.println("æœªæŸ¥åˆ°æ­¤äººï¼Œè¯·æ ¸å¯¹ä¿¡æ¯");
+    }///ä¿®æ”¹
+    public static  void xianshi(ArrayList<String> arrayList)
+    {
+        for (String string:arrayList)
+        {
+            if (string.equals("1"))
+                System.out.print("æ’å…¥" + " ");
+            if (string.equals("2"))
+                System.out.print("æŸ¥æ‰¾" + " ");
+            if (string.equals("3"))
+                System.out.print("åˆ é™¤" + " ");
+            if (string.equals("4"))
+                System.out.print("ä¿®æ”¹" + " ");
+            if (string.equals("5"))
+                System.out.print("è¾“å‡º" + " ");
+            if (string.equals("6"))
+                System.out.print("é€€å‡º" + " ");
+            if (string.equals("7"))
+                System.out.print("å›é¡¾" + " ");
+        }
+    }
+public static void printAll()
+{
+    for (Student student1 : arrayList)
+        System.out.println("å­¦å·ï¼š" + student1.getID()  + "å§“åï¼š" + student1.getName() + "å‡ºç”Ÿæ—¥æœŸï¼š"+student1.getBirDate()+"æ€§åˆ«"+(student1.isGender()?"ç”·":"å¥³"));
+
+}
+public  static  void tuichu()
+{
+    System.exit(0);
+}
+    public static void App()
+    {
+        boolean tuichu = true;
+        ArrayList<String> arrayList = new ArrayList<>();
+        while (tuichu)
+        {
+            System.out.println("è¯·é€‰æ‹©æ“ä½œ");
+            System.out.println("*********************************************************");
+            System.out.println("*                         1.æ’å…¥                        *");
+            System.out.println("*                         2.æŸ¥æ‰¾                        *");
+            System.out.println("*                         3.åˆ é™¤                        *");
+            System.out.println("*                         4.ä¿®æ”¹                        *");
+            System.out.println("*                         5.è¾“å‡º                        *");
+            System.out.println("*                         6.é€€å‡º                        *");
+            System.out.println("*********************************************************");
+            String a = scanner.nextLine();
+            arrayList.add(a);
+            switch (a){
+                case "1":
+                    int ID = arrayList.size()+1;
+                    System.out.println("è¯·è¾“å…¥å§“åï¼š");
+                    String name = scanner.nextLine();
+                    System.out.println("è¯·è¾“å…¥å‡ºç”Ÿæ—¥æœŸï¼š");
+                    String birDate = scanner.nextLine();
+                    System.out.println("è¯·è¾“å…¥æ€§åˆ«ï¼š");
+                    boolean gender = (scanner.nextLine().equals("ç”·"))?true:false;
+                    addStudent(ID,name,birDate,gender);
+                    break;
+                case "2":
+                    System.out.println("è¯·è¾“å…¥æŸ¥æ‰¾äººçš„å§“åï¼š");
+                    String name1 = scanner.nextLine();
+                    seek(name1);
+                    break;
+                case "3":
+                    System.out.println("è¯·è¾“å…¥è¢«åˆ é™¤äººçš„å§“åï¼š");
+                    String name2 = scanner.nextLine();
+                    delete(name2);
+                    break;
+                case "4":
+                    System.out.println("è¯·è¾“å…¥è¢«ä¿®æ”¹äººçš„å§“åï¼š");
+                    String name3 = scanner.nextLine();
+                    change(name3);
+                    break;
+                case "5":
+                    printAll();
+                    break;
+                case "6":
+                    tuichu();
+                    break;
+                case "7":
+                    xianshi(arrayList);
+                    break;
+            }
+        }
+    }//ç•Œé¢
+    public static void main(String[] args) {
+
+    App();
+
+
+  }
 }
